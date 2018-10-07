@@ -10,8 +10,6 @@ var Presentor = function( puzzle ) {
 	this.tileWidth  = this.boardWidth / puzzle.dimensionX;
 	this.tileHeight = this.boardHeight / puzzle.dimensionY;
 
-	console.log(this.boardWidth);
-
 	this.drawTiles = function() {
 
 		board.innerHTML = "";
@@ -49,7 +47,6 @@ var Presentor = function( puzzle ) {
 		var imagePart = document.createElement( 'span' ),
 			bgPosX = -( tile.correctX * this.tileWidth ),
 			bgPosY = -( tile.correctY * this.tileHeight );
-		console.log(this.tileWidth);
 		imagePart.style.backgroundSize = `${this.boardWidth}px ${this.boardHeight}px`;
 		imagePart.style.backgroundPosition = `${bgPosY} ${bgPosX}`;
 		return imagePart;
@@ -62,20 +59,20 @@ var Presentor = function( puzzle ) {
     root.appendChild( example );
 	};
 
-	this.moveUp = function( tile ) {
-    var el = document.getElementById( tile.id );
+	this.moveUp = function( i ) {
+    var el = document.getElementById( i );
     el.style.top = parseInt(el.style.top) - this.tileHeight + 'px';
   };
-  this.moveDown = function( tile ) {
-    var el = document.getElementById( tile.id );
+  this.moveDown = function( i ) {
+    var el = document.getElementById( i );
     el.style.top = parseInt(el.style.top) + this.tileHeight+ 'px';
   };
-  this.moveLeft = function( tile ) {
-    var el = document.getElementById( tile.id );
+  this.moveLeft = function( i ) {
+    var el = document.getElementById( i );
     el.style.left = parseInt(el.style.left) - this.tileWidth + 'px';
   };
-  this.moveRight = function( tile ) {
-    var el = document.getElementById( tile.id );
+  this.moveRight = function( i ) {
+    var el = document.getElementById( i );
     el.style.left = parseInt(el.style.left) + this.tileWidth + 'px';
   };
 
