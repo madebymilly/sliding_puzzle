@@ -12,16 +12,16 @@ var Puzzle = function() {
     return tiles.empty === true;
   }
 
-  var emptyTile = this.board.tiles.find(findEmptyTile); // var?
+  var emptyTile = this.board.tiles.find(findEmptyTile);
 
   this.shuffle = function() {
 
     // Random 100 moves:
-    var timesToMove = 10;
+    var timesToMove = 100;
     for (var i = 0; i < timesToMove; i++ ) {
       var moveableTiles = [];
       for ( tile in this.board.tiles ) {
-        // get a tile that has the emptytile next to it
+        // get tiles that have emptytile next to it
         var t = this.board.tiles[tile];
         var emptytilePosRow = emptyTile.x,
           emptytilePosCol = emptyTile.y;
@@ -32,7 +32,7 @@ var Puzzle = function() {
             moveableTiles.push( t );
         }
       }
-      // pick one and swap with empty
+      // pick random one and swap with empty
       var randomT = moveableTiles[Math.floor(Math.random()*moveableTiles.length)];
       var randomTx = randomT.x,
         randomTy = randomT.y,
@@ -89,7 +89,7 @@ this.moveTile = function( index ) {
     emptytilePosCol--;
   }
 
-  // Update array items:
+  // Update:
   currentTile.x = posRow;
   currentTile.y = posCol;
   emptyTile.x = emptytilePosRow;
