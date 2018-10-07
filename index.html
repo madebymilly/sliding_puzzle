@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Puzzle</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles/style.css" />
+</head>
+<body>
+	<div id="root">
+		<h1>Welcome to the Monks Sliding Puzzle</h1>
+		<div id="board"></div>
+	</div>
+
+	<script type="text/javascript" src="js/puzzle.js"></script>
+	<script type="text/javascript" src="js/board.js"></script>
+	<script type="text/javascript" src="js/tile.js"></script>
+	<script type="text/javascript" src="js/presentor.js"></script>
+	<script type="text/javascript">
+
+	(function (){
+
+		var game = new Puzzle();
+		game.init();
+
+	})();
+
+	</script>
+</body>
+</html>
