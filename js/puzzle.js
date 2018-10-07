@@ -72,19 +72,19 @@ this.moveTile = function( index ) {
     posCol = currentTile.y;
 
   if (posRow - 1 == emptytilePosRow && posCol == emptytilePosCol) {
-    this.presentor.moveUp( currentTile );
+    this.presentor.moveUp( index );
     posRow--;
     emptytilePosRow++;
   } else if (posRow + 1 == emptytilePosRow && posCol == emptytilePosCol) {
-    this.presentor.moveDown( currentTile );
+    this.presentor.moveDown( index );
     posRow++;
     emptytilePosRow--;
   } else if (posRow == emptytilePosRow && posCol - 1 == emptytilePosCol) {
-     this.presentor.moveLeft( currentTile );
+     this.presentor.moveLeft( index );
      posCol--;
      emptytilePosCol++;
   } else if (posRow == emptytilePosRow && posCol + 1 == emptytilePosCol) {
-    this.presentor.moveRight( currentTile );
+    this.presentor.moveRight( index );
     posCol++;
     emptytilePosCol--;
   }
@@ -101,7 +101,6 @@ this.moveTile = function( index ) {
 
   this.init = function() {
     if ( !this.started ) {
-
       this.presentor.drawExample();
       this.presentor.drawTiles();
       this.shuffle();
