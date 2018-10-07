@@ -1,6 +1,6 @@
 var Puzzle = function() {
 
-  var dimension = '4x4'; // TO DO
+  var dimension = '4x4'; // TO DO get via settings
   this.dimensionX = dimension.substring(0, 1);
   this.dimensionY = dimension.substring(2, 3);
 
@@ -12,19 +12,19 @@ var Puzzle = function() {
     return tiles.empty === true;
   }
 
-  this.emptyTile = this.board.tiles.find(findEmptyTile); // var?
+  var emptyTile = this.board.tiles.find(findEmptyTile); // var?
 
   this.shuffle = function() {
 
     // Random 100 moves:
-    var timesToMove = 100;
+    var timesToMove = 10;
     for (var i = 0; i < timesToMove; i++ ) {
       var moveableTiles = [];
       for ( tile in this.board.tiles ) {
         // get a tile that has the emptytile next to it
         var t = this.board.tiles[tile];
-        var emptytilePosRow = this.emptyTile.x,
-          emptytilePosCol = this.emptyTile.y;
+        var emptytilePosRow = emptyTile.x,
+          emptytilePosCol = emptyTile.y;
         if ( (t.x - 1 == emptytilePosRow && t.y == emptytilePosCol) ||
           (t.x + 1 == emptytilePosRow && t.y == emptytilePosCol) ||
           (t.x == emptytilePosRow && t.y - 1 == emptytilePosCol) ||
@@ -36,12 +36,12 @@ var Puzzle = function() {
       var randomT = moveableTiles[Math.floor(Math.random()*moveableTiles.length)];
       var randomTx = randomT.x,
         randomTy = randomT.y,
-        emptyTx = this.emptyTile.x,
-        emptyTy = this.emptyTile.y;
+        emptyTx = emptyTile.x,
+        emptyTy = emptyTile.y;
       randomT.x = emptyTx;
       randomT.y = emptyTy;
-      this.emptyTile.x = randomTx;
-      this.emptyTile.y = randomTy;
+      emptyTile.x = randomTx;
+      emptyTile.y = randomTy;
     }
     this.presentor.drawTiles();
   };
@@ -66,8 +66,8 @@ var Puzzle = function() {
 
 this.moveTile = function( index ) {
   var currentTile = this.board.tiles[index],
-    emptytilePosRow = this.emptyTile.x,
-    emptytilePosCol = this.emptyTile.y,
+    emptytilePosRow = emptyTile.x,
+    emptytilePosCol = emptyTile.y,
     posRow = currentTile.x,
     posCol = currentTile.y;
 
@@ -92,8 +92,8 @@ this.moveTile = function( index ) {
   // Update array items:
   currentTile.x = posRow;
   currentTile.y = posCol;
-  this.emptyTile.x = emptytilePosRow;
-  this.emptyTile.y = emptytilePosCol;
+  emptyTile.x = emptytilePosRow;
+  emptyTile.y = emptytilePosCol;
 
   // Check if solved:
   this.checkIfSolved();
