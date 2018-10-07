@@ -77,7 +77,7 @@ var Presentor = function( puzzle ) {
   };
 
 	var getEmptyTile = function( t ) {
-		if ( parseInt(t.id) === 15 ) { // TO DO
+		if ( parseInt(t.id) === puzzle.board.tiles.length-1 ) {
       t.className = 'tile empty-tile';
 			t.innerHTML = '';
     }
