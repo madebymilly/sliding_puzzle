@@ -20,6 +20,36 @@ h1 {
   float: left;
 }
 
+#start {
+  display: block;
+  border: 0;
+  background: #1daeec;
+  color: #fff;
+  font-size: 20px;
+  line-height: 40px;
+  padding: 0 20px;
+  margin: 50px auto;
+  cursor: pointer;
+}
+
+#start:hover {
+  background: #fff;
+  color: #1daeec;
+  transition: background 0.2s linear, color 0.2s linear;
+}
+
+#settings {
+  margin: 0 0 20px;
+}
+
+#settings label {
+  margin-right: 20px;
+}
+
+#settings label.disabled {
+  color: #999;
+}
+
 #example {
   float: left;
   margin: 0 0 0 20px;
