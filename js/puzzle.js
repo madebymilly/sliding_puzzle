@@ -7,7 +7,7 @@ this.presentor = new Presentor( this );
   this.shuffle = function() {
 
     // Random 100 moves:
-    var timesToMove = 5;
+    var timesToMove = 100;
     for (var i = 0; i < timesToMove; i++ ) {
       var moveableTiles = [];
       for ( tile in this.board.tiles ) {
