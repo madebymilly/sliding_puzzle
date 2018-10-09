@@ -1,17 +1,15 @@
 var Puzzle = function() {
 
-
-this.presentor = new Presentor( this );
-
+  this.board = new Board( this );
+  this.presentor = new Presentor( this );
 
   this.shuffle = function() {
 
-    // Random 100 moves:
     var timesToMove = 100;
-    for (var i = 0; i < timesToMove; i++ ) {
+    for ( var i = 0; i < timesToMove; i++ ) {
       var moveableTiles = [];
       for ( tile in this.board.tiles ) {
-        // get tiles that have emptytile next to it
+        // Get tiles that have emptytile next to it:
         var t = this.board.tiles[tile];
         var emptytilePosRow = this.emptyTile.x,
           emptytilePosCol = this.emptyTile.y;
@@ -22,7 +20,7 @@ this.presentor = new Presentor( this );
             moveableTiles.push( t );
         }
       }
-      // pick random one and swap with empty
+      // Pick random one and swap with empty
       var randomT = moveableTiles[Math.floor(Math.random()*moveableTiles.length)];
       var randomTx = randomT.x,
         randomTy = randomT.y,
@@ -48,7 +46,7 @@ this.presentor = new Presentor( this );
       }
       if ( correctTiles ==  tiles.length ) {
         setTimeout( function() {
-          alert('Congrats! You have solved the puzzle.');
+          alert( 'Congrats! You have solved the puzzle.' );
         }, 300 );
       }
     }
@@ -90,24 +88,24 @@ this.presentor = new Presentor( this );
   };
 
   this.start = function() {
-    
+
     if ( document.getElementById( 'seeExample' ).checked ) {
       this.presentor.drawExample();
     }
-    var dimension = document.querySelector('input[name="dimensions"]:checked').value;;
+    var dimension = document.querySelector( 'input[name="dimensions"]:checked' ).value;
     this.dimensionX = dimension.substring(0, 1);
     this.dimensionY = dimension.substring(2, 3);
 
     this.board = new Board( this );
     this.presentor = new Presentor( this );
 
-    this.emptyTile = this.board.tiles.find(findEmptyTile);
+    this.emptyTile = this.board.tiles.find( findEmptyTile );
 
     this.presentor.disableSettings();
     this.presentor.drawTiles();
     this.shuffle();
     // Test:
-    console.log(this.board);
+    //console.log( this.board );
   };
 
   this.init = function() {
@@ -115,10 +113,8 @@ this.presentor = new Presentor( this );
     this.presentor.drawStartBtn();
   };
 
-  var findEmptyTile = function(tiles) {
+  var findEmptyTile = function( tiles ) {
     return tiles.empty === true;
-  }
-
-
+  };
 
 };

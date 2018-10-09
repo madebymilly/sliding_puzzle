@@ -1,7 +1,7 @@
 var Board = function( puzzle ) {
 
-  var indexX = parseInt(puzzle.dimensionX),
-    indexY = parseInt(puzzle.dimensionY);
+  var indexX = parseInt( puzzle.dimensionX ),
+    indexY = parseInt( puzzle.dimensionY );
 
   this.tiles = createTilesObject();
 

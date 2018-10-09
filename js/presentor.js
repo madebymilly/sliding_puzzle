@@ -14,21 +14,17 @@ var Presentor = function( puzzle ) {
 		var btn = document.createElement( 'button' );
 		btn.innerHTML = 'Start Puzzle!';
 		btn.id = 'start';
-		btn.addEventListener ('click', function(e) {
+		btn.addEventListener ( 'click', function(e) {
 			puzzle.start();
 		}, false );
 		board.appendChild( btn );
 	};
 
 	this.drawTiles = function() {
-
 		board.innerHTML = "";
-
     var i = 0;
     for ( tile in puzzle.board.tiles ) {
       var tile = puzzle.board.tiles[tile];
-			console.log(tile);
-
 			var div = document.createElement( 'div' );
       div.className = 'tile';
       div.id = i;
@@ -37,7 +33,7 @@ var Presentor = function( puzzle ) {
       div.style.top = ( tile.x * this.tileWidth ) + 'px';
       div.style.left = ( tile.y * this.tileHeight ) + 'px';
 
-			// Closure to add click event:
+			// Closure to add click event to all tiles:
 			(function (x) {
         div.addEventListener ('click', function(e) {
           puzzle.moveTile( x );
@@ -47,9 +43,7 @@ var Presentor = function( puzzle ) {
 
 			var imagePart = this.drawImagePart( tile );
 			div.appendChild( imagePart );
-
 			getEmptyTile( div );
-
 			board.appendChild( div );
 		}
 	};
@@ -82,19 +76,15 @@ var Presentor = function( puzzle ) {
 	this.drawSettings = function() {
 		var settingsDiv = document.createElement( 'div' );
 		settingsDiv.id = 'settings';
-
-		// TO DO: vanuit puzzle.js aangeven voor welke dimensions er een createRadio aangemaakt moet worden.
 	 	settingsDiv.appendChild( createInput( 'radio', 'dimensions', '3x3', '3x3', false ) );
 		settingsDiv.appendChild( createInput( 'radio', 'dimensions', '4x4', '4x4', true ) );
 		settingsDiv.appendChild( createInput( 'radio', 'dimensions', '5x5', '5x5', false ) );
 		settingsDiv.appendChild( createInput( 'checkbox', 'seeExample', '', 'Want to see example?', false ) );
-
 		root.insertBefore( settingsDiv, board );
 	};
 
-	// TO DO: combine these functions
 	var createInput = function( type, name, value, text, checked, disabled ) {
-		var input = document.createElement( 'input');
+		var input = document.createElement( 'input' );
     var label = document.createElement( 'label' );
     input.type =  type;
     input.value = value;
@@ -108,23 +98,23 @@ var Presentor = function( puzzle ) {
 
 	this.moveUp = function( i ) {
     var el = document.getElementById( i );
-    el.style.top = parseInt(el.style.top) - this.tileHeight + 'px';
+    el.style.top = parseInt( el.style.top ) - this.tileHeight + 'px';
   };
   this.moveDown = function( i ) {
     var el = document.getElementById( i );
-    el.style.top = parseInt(el.style.top) + this.tileHeight+ 'px';
+    el.style.top = parseInt( el.style.top ) + this.tileHeight+ 'px';
   };
   this.moveLeft = function( i ) {
     var el = document.getElementById( i );
-    el.style.left = parseInt(el.style.left) - this.tileWidth + 'px';
+    el.style.left = parseInt( el.style.left ) - this.tileWidth + 'px';
   };
   this.moveRight = function( i ) {
     var el = document.getElementById( i );
-    el.style.left = parseInt(el.style.left) + this.tileWidth + 'px';
+    el.style.left = parseInt( el.style.left ) + this.tileWidth + 'px';
   };
 
 	var getEmptyTile = function( t ) {
-		if ( parseInt(t.id) === puzzle.board.tiles.length-1 ) {
+		if ( parseInt( t.id ) === puzzle.board.tiles.length-1 ) {
       t.className = 'tile empty-tile';
 			t.innerHTML = '';
     }
