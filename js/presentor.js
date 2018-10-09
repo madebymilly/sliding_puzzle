@@ -27,6 +27,7 @@ var Presentor = function( puzzle ) {
     var i = 0;
     for ( tile in puzzle.board.tiles ) {
       var tile = puzzle.board.tiles[tile];
+			console.log(tile);
 
 			var div = document.createElement( 'div' );
       div.className = 'tile';

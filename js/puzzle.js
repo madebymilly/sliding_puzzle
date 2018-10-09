@@ -1,17 +1,8 @@
 var Puzzle = function() {
 
-  var dimension = '4x4'; // TO DO get via settings
-  this.dimensionX = dimension.substring(0, 1);
-  this.dimensionY = dimension.substring(2, 3);
 
-  this.board = new Board( this );
-  this.presentor = new Presentor( this );
+this.presentor = new Presentor( this );
 
-  var findEmptyTile = function(tiles) {
-    return tiles.empty === true;
-  }
-
-  var emptyTile = this.board.tiles.find(findEmptyTile);
 
   this.shuffle = function() {
 
@@ -22,8 +13,8 @@ var Puzzle = function() {
       for ( tile in this.board.tiles ) {
         // get tiles that have emptytile next to it
         var t = this.board.tiles[tile];
-        var emptytilePosRow = emptyTile.x,
-          emptytilePosCol = emptyTile.y;
+        var emptytilePosRow = this.emptyTile.x,
+          emptytilePosCol = this.emptyTile.y;
         if ( (t.x - 1 == emptytilePosRow && t.y == emptytilePosCol) ||
           (t.x + 1 == emptytilePosRow && t.y == emptytilePosCol) ||
           (t.x == emptytilePosRow && t.y - 1 == emptytilePosCol) ||
@@ -35,12 +26,12 @@ var Puzzle = function() {
       var randomT = moveableTiles[Math.floor(Math.random()*moveableTiles.length)];
       var randomTx = randomT.x,
         randomTy = randomT.y,
-        emptyTx = emptyTile.x,
-        emptyTy = emptyTile.y;
+        emptyTx = this.emptyTile.x,
+        emptyTy = this.emptyTile.y;
       randomT.x = emptyTx;
       randomT.y = emptyTy;
-      emptyTile.x = randomTx;
-      emptyTile.y = randomTy;
+      this.emptyTile.x = randomTx;
+      this.emptyTile.y = randomTy;
     }
     this.presentor.drawTiles();
   };
@@ -65,8 +56,8 @@ var Puzzle = function() {
 
   this.moveTile = function( index ) {
     var currentTile = this.board.tiles[index],
-      emptytilePosRow = emptyTile.x,
-      emptytilePosCol = emptyTile.y,
+      emptytilePosRow = this.emptyTile.x,
+      emptytilePosCol = this.emptyTile.y,
       posRow = currentTile.x,
       posCol = currentTile.y;
 
@@ -91,17 +82,27 @@ var Puzzle = function() {
     // Update:
     currentTile.x = posRow;
     currentTile.y = posCol;
-    emptyTile.x = emptytilePosRow;
-    emptyTile.y = emptytilePosCol;
+    this.emptyTile.x = emptytilePosRow;
+    this.emptyTile.y = emptytilePosCol;
 
     // Check if solved:
     this.checkIfSolved();
   };
 
   this.start = function() {
+    
     if ( document.getElementById( 'seeExample' ).checked ) {
       this.presentor.drawExample();
     }
+    var dimension = document.querySelector('input[name="dimensions"]:checked').value;;
+    this.dimensionX = dimension.substring(0, 1);
+    this.dimensionY = dimension.substring(2, 3);
+
+    this.board = new Board( this );
+    this.presentor = new Presentor( this );
+
+    this.emptyTile = this.board.tiles.find(findEmptyTile);
+
     this.presentor.disableSettings();
     this.presentor.drawTiles();
     this.shuffle();
@@ -113,6 +114,10 @@ var Puzzle = function() {
     this.presentor.drawSettings();
     this.presentor.drawStartBtn();
   };
+
+  var findEmptyTile = function(tiles) {
+    return tiles.empty === true;
+  }
 
 
 
