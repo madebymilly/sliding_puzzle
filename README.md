@@ -1,4 +1,10 @@
-# slidingpuzzle
+# Sliding Puzzle Game
+
+Project from 2018. I created a sliding puzzle in Vanilla JS. 
+
+Techniques: Pure JavaScript (ES6), no jQuery.
+
+[Play the puzzle game](https://madebymilly.github.io/slidingpuzzle/)
 
 ## Next steps:
 
